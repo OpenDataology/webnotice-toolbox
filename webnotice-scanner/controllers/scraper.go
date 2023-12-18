@@ -10,7 +10,9 @@ SPDX-License-Identifier: Apache-2.0
 package controllers
 
 import (
+	"github.com/OpenDataology/webnotice-toolbox/webnotice-scanner/utils"
 	"net/http"
+	"strconv"
 
 	service "github.com/OpenDataology/webnotice-toolbox/webnotice-scanner/services"
 
@@ -18,8 +20,19 @@ import (
 )
 
 func (a *BasicInfo) GetCopyright(c *gin.Context) {
-	url := c.GetString("Url")
+	// url := c.GetString("url")
+	// id, _ := strconv.Atoi(c.GetString("id"))
 
-	res := service.GetCopyrightService(c, url)
+	if c.Query("url") == "" ||
+		c.Query("id") == "" {
+
+		a.JsonFail(c, http.StatusBadRequest, "not allow")
+		return
+	}
+
+	url := utils.URLResolve(c.Query("url"), "")
+	id, _ := strconv.Atoi(c.Query("id"))
+
+	res := service.GetCopyrightService(c, url, id)
 	a.JsonSuccess(c, http.StatusOK, res)
 }
