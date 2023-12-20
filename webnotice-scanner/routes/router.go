@@ -21,7 +21,7 @@ func InitRouter() *gin.Engine {
 	v1 := router.Group("/api/v1")
 	{
 		basic := new(controllers.BasicInfo)
-		v1.GET("/get_copyright", basic.GetCopyright)
+		v1.GET("/copyright/compliance/task", basic.GetCopyright)
 
 	}
 	return router

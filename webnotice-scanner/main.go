@@ -9,6 +9,10 @@ SPDX-License-Identifier: Apache-2.0
 
 package main
 
-func main() {
+import (
+	"github.com/OpenDataology/webnotice-toolbox/webnotice-scanner/config"
+)
 
+func main() {
+	config.InitAndStart()
 }
