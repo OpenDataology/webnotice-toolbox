@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal-backend-deployment
+spec:
+  selector:
+    matchLabels:
+      app:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: webnotice-toolbox
+    spec:
+      containers:
+        - image: robekeane/webnotice-toolbox:0.1
+          name: webnotice-toolbox-con
+          env:
+            - name: ADDR
+              valueFrom:
+                configMapKeyRef:
+                  name: webnotice-toolbox-config
+                  key: addr
+            - name: DSN
+              valueFrom:
+                configMapKeyRef:
+                  name: webnotice-toolbox-config
+                  key: dsn
+            - name: MAX_IDLE_CONN
+              valueFrom:
+                configMapKeyRef:
+                  name: webnotice-toolbox-config
+                  key: max_idle_conn
+            - name: TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: webnotice-toolbox-config
+                  key: token
