@@ -64,7 +64,7 @@ func (copyrightHandler CopyrightHandlerImpl) Handle(cchqd dto.CopyrightComplianc
 
 func (licenseHandler LicenseHandlerImpl) Handle(cchqd dto.CopyrightComplianceHandlerRequestDTO) {
 
-	log.Printf("license mes handler run url:%s,bimId:%s", cchqd.SourceUrl, cchqd.AibomId)
+	log.Printf("license mes handler run url:%s,bimId:%d", cchqd.SourceUrl, cchqd.AibomId)
 	//aibomId := cchqd.AibomId
 	licenseRes := matchLicenseContent(cchqd.SourceUrl)
 
@@ -258,7 +258,7 @@ func webPageLicenseUrlKeywordMatch(webPageLink dto.WebPageLink) *dto.WebPageLice
 		}
 		// 选择整个文档的纯文本
 
-		log.Printf("link match index：%s link：%s , suffix:%s ", string(index), curLinkURL, licenseUrlSuffix.UrlSuffix)
+		log.Printf("link match index：%d link：%s , suffix:%s ", index, curLinkURL, licenseUrlSuffix.UrlSuffix)
 		return &dto.WebPageLicenseDTO{
 			LicenseContent: licenseContent,
 			LicenseUrl:     curLinkURL,
@@ -293,7 +293,7 @@ func webPageLicenseKeywordMatch(webPageLink dto.WebPageLink) *dto.WebPageLicense
 		}
 		// 选择整个文档的纯文本
 
-		log.Printf("webPageLicenseKeywordMatch - keyword match index：%s,curLinkUrl:%s,keyword:%s", string(index), curLinkURL, LicenseDescKeywordDTo.Keyword)
+		log.Printf("webPageLicenseKeywordMatch - keyword match index：%d,curLinkUrl:%s,keyword:%s", index, curLinkURL, LicenseDescKeywordDTo.Keyword)
 		return &dto.WebPageLicenseDTO{
 			LicenseContent: licenseContent,
 			LicenseUrl:     curLinkURL,

@@ -19,7 +19,7 @@ import (
 
 func GetCopyrightService(c *gin.Context, url string, id int) (h gin.H) {
 
-	log.Printf("url:%s,bomid:%s", url, id)
+	log.Printf("url:%s,bomid:%d", url, id)
 	copyrightCompalianceHandlerQueset := dto.CopyrightComplianceHandlerRequestDTO{
 		AibomId:   id,
 		SourceUrl: utils.URLResolve(url, ""),
